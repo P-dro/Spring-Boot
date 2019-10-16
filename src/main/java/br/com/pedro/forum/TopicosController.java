@@ -14,6 +14,8 @@ import br.com.pedro.forum.controller.VO.TopicoVO;
 import br.com.pedro.forum.model.Topico;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/topicos")
@@ -38,7 +40,7 @@ public class TopicosController {
 		}
 	}
 	@PostMapping
-	public ResponseEntity<TopicoVO> cadastrar(@RequestBody TopicoForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<TopicoVO> cadastrar(@RequestBody @Valid TopicoForm form, UriComponentsBuilder uriBuilder) {
 		Topico topico = form.converter(cursoRepository);
 		topicoRepository.save(topico);
 
