@@ -1,10 +1,9 @@
 package br.com.pedro.forum.controller.VO;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import br.com.pedro.forum.model.Topico;
+import org.springframework.data.domain.Page;
+
+import java.time.LocalDateTime;
 
 public class TopicoVO {
 	
@@ -36,9 +35,9 @@ public class TopicoVO {
 		return dataCriacao;
 	}
 
-	public static List<TopicoVO> converter(List<Topico> topicos) {
+	public static Page<TopicoVO> converter(Page<Topico> topicos) {
 		
-		return topicos.stream().map(TopicoVO::new).collect(Collectors.toList());
+		return topicos.map(TopicoVO::new);
 	}
 	
 }
