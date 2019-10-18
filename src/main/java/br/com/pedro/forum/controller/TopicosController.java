@@ -1,4 +1,4 @@
-package br.com.pedro.forum;
+package br.com.pedro.forum.controller;
 
 import br.com.pedro.forum.controller.VO.DetalhaTopicoVO;
 import br.com.pedro.forum.controller.VO.TopicoVO;
@@ -38,6 +38,7 @@ public class TopicosController {
 
         if (nomeCurso == null) {
 			Page<Topico> topicos = topicoRepository.findAll(paginacao);
+			System.out.println(topicos);
 			return TopicoVO.converter(topicos);
 		}else {
 			System.out.println(nomeCurso);
