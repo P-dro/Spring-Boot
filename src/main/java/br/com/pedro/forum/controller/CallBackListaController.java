@@ -6,12 +6,12 @@ import br.com.pedro.forum.repository.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -23,11 +23,9 @@ public class CallBackListaController {
     @Autowired
     private CursoRepository cursoRepository;
 
-    @GetMapping()
+    @GetMapping() //@ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Necessário que o campo pagina e quantidade seja maior que zero")
      //public Page<CallBackLista> lista(@RequestParam(required = false) String nomeCurso, @PageableDefault(sort="id", direction = Sort.Direction.DESC, page = 0, size = 10) Pageable paginacao)
         public List lista(@RequestParam int pagina, @RequestParam int qtd) {
-
-        Pageable paginacao = PageRequest.of(pagina, qtd);
 
         List<CallBackLista> lista = new ArrayList();
         CallBackLista list1 = new CallBackLista((long)1, "Callback por Suspeita de Fraude", "LARISSA LOPES", "56225898487", "pedente",  2.500, "aberto");
@@ -52,8 +50,26 @@ public class CallBackListaController {
         lista.add(list10);
 
 
+        if(qtd == 0 && pagina == 0) {
+            System.out.println(pagina + "e depois " + qtd);
+            System.out.println(lista);
+            return lista;
+        }
 
-        return lista.subList(pagina, qtd);
+        if(qtd <= 0 || pagina <= 0) {
+            System.out.println("ta vindo aqui");
+            return Collections.singletonList(ResponseEntity.badRequest().build());
+
+        }
+
+        int fromIndex = (pagina - 1) * qtd;
+        if(lista == null || lista.size() < fromIndex){
+            return Collections.emptyList();
+        }
+
+        // toIndex exclusive
+        return lista.subList(fromIndex, Math.min(fromIndex + qtd, lista.size()));
+       // return lista.subList(pagina, qtd);
     }
 }
 
