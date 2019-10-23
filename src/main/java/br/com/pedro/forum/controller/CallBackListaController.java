@@ -20,7 +20,6 @@ public class CallBackListaController {
     public ResponseEntity<Object> lista(@RequestParam(required = false) Integer pagina, @RequestParam(required = false) Integer qtd) throws BasicHttpErrorMessage {
 
         java.util.List lista = new ArrayList();
-        java.util.List listaPag = new ArrayList();
 
         int fromIndex = ((pagina - 1) * qtd);
 
@@ -33,7 +32,7 @@ public class CallBackListaController {
         CallBackTransaction transaction = new CallBackTransaction();
         transaction.setCreationDate(LocalDateTime.now());
         transaction.setScheduleDate(LocalDateTime.now());
-        transaction.setValue(2.500);
+        transaction.setValue((long) 2500);
 
         CallBackCustomer mockCustomer = new CallBackCustomer();
         mockCustomer.setIdentification("56225898487");
@@ -41,7 +40,7 @@ public class CallBackListaController {
 
         for (int i = 0; i < 50; i++) {
             CallBackListRequest request = new CallBackListRequest(callBackList, transaction, mockCustomer);
-            request.setId(i);
+            request.setId((long) i);
             lista.add(request);
         }
 
@@ -56,9 +55,9 @@ public class CallBackListaController {
         if (pagina * qtd > lista.size()){
             BasicHttpErrorMessage erro = new BasicHttpErrorMessage();
             erro.setMessage("Quantidade de paginas ou quantidade de itens inválida");
-            erro.getTimestamp();
-            erro.getStatus();
-            return new ResponseEntity<>(erro, HttpStatus.BAD_REQUEST);
+            erro.setTimestamp(LocalDateTime.now().toString());
+            erro.setStatus(200);
+            return new ResponseEntity<>(erro, HttpStatus.OK);
         }
 
         CallBackListResponse paginacao = new CallBackListResponse();

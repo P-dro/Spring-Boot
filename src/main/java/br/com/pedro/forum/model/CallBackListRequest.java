@@ -1,7 +1,7 @@
 package br.com.pedro.forum.model;
 
 public class CallBackListRequest {
-    private int id;
+    private Long id;
     private CallBackList callBackList;
     private CallBackTransaction transaction;
     private CallBackCustomer customer;
@@ -14,11 +14,11 @@ public class CallBackListRequest {
         this.customer = customer;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

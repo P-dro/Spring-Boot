@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class CallBackTransaction {
 
-    private double value;
+    private Long value;
     private LocalDateTime creationDate;
     private LocalDateTime scheduleDate;
 
@@ -12,7 +12,7 @@ public class CallBackTransaction {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(Long value) {
         this.value = value;
     }
 
