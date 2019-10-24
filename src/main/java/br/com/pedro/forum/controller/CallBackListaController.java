@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class CallBackListaController {
 
     @GetMapping("/listar")
-    public ResponseEntity<Object> lista(@RequestParam(required = false) Integer pagina, @RequestParam(required = false) Integer qtd) throws BasicHttpErrorMessage {
+    public ResponseEntity<Object> lista(@RequestParam(required = false) Integer pagina, @RequestParam(required = false) Integer qtd) {
 
         java.util.List lista = new ArrayList();
 

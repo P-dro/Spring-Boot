@@ -1,12 +1,6 @@
-package br.com.pedro.forum.controller;
+package br.com.pedro.forum.repository;
 
-import br.com.pedro.forum.config.validacao.BasicHttpErrorMessage;
-import br.com.pedro.forum.controller.form.CallBackDetailChangeForm;
-import br.com.pedro.forum.controller.form.CallBackLoginForm;
 import br.com.pedro.forum.model.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,15 +8,12 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/callback")
-public class CallBackDetailsController {
+public interface CallBackDetailMock {
 
-    private Object target;
 
-    java.util.List<CallBackDetailRequest> lista = new ArrayList<>();
+    java.util.List<CallBackDetailRequest> lista = mockLista();
 
-    public List mockLista() {
+    public static List mockLista() {
 
         CallBackDetailCustomer customerMock = new CallBackDetailCustomer();
         customerMock.setAccountType("R");
@@ -66,48 +57,6 @@ public class CallBackDetailsController {
             request.setId((long) i);
             lista.add(request);
         }
-
         return lista;
-
     }
-
-    @GetMapping("/detalhes/{id}")
-    public ResponseEntity<Object> destail(@PathVariable int id) {
-        target = null;
-
-        mockLista();
-
-        BasicHttpErrorMessage erro = new BasicHttpErrorMessage();
-        erro.setMessage("Não existe esse número de ID");
-        erro.setTimestamp(LocalDateTime.now().toString());
-        erro.setStatus(200);
-
-        lista.forEach(e -> {
-            if (e.getId() == id) {
-               this.target = e;
-            }
-        });
-
-        if (target == null) {
-            return new ResponseEntity<>(erro, HttpStatus.OK);
-        }
-
-        return ResponseEntity.ok().body(target);
-    }
-    @PatchMapping("/parecer/{id}")
-    public ResponseEntity<Object> atualizar(@PathVariable Long id, @RequestBody CallBackDetailChangeForm callBackDetailChange) {
-        mockLista();
-        lista.forEach(e -> {
-            if (e.getId() == id) {
-                CallBackDetailTransaction updateTransaction =  e.getTransaction();
-                updateTransaction.setStatus(callBackDetailChange.getStatus());
-                e.setTransaction(updateTransaction);
-                this.target = e;
-            }
-        });
-        return ResponseEntity.ok().body(target);
-    }
-
-
 }
-

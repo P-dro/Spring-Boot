@@ -3,7 +3,7 @@ package br.com.pedro.forum.config.validacao;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class BasicHttpErrorMessage extends Throwable {
+public class BasicHttpErrorMessage {
     private String timestamp;
     private int status;
     private String error;
@@ -13,7 +13,7 @@ public class BasicHttpErrorMessage extends Throwable {
     public BasicHttpErrorMessage() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        this.setTimestamp(dtf.format(now)); // 2016/11/16 12:08:43
+        this.setTimestamp(dtf.format(now));
     }
 
     public int getStatus() {
