@@ -1,0 +1,76 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'org.sonarqube' version '2.7'
+    id 'jacoco'
+}
+
+jacoco {
+    toolVersion = "0.8.4"
+}
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    maven {
+        credentials {
+            username = "$mavenUser"
+            password = "$mavenPassword"
+        }
+        url = "https://alm.original.com.br/nexus/content/groups/microservices-maven/"
+    }
+}
+
+dependencies {
+    def lombokVersion = "1.18.8"
+
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+    implementation 'br.com.original.mcsv:mcsv-common-lib:0.0.19-SNAPSHOT'
+}
+
+group = 'br.com.original.projeto'
+version = '0.0.1-SNAPSHOT'
+description = 'projeto'
+
+if (!project.hasProperty("repoUser")) {
+    ext.repoUser = ""
+}
+
+if (!project.hasProperty("repoPassword")) {
+    ext.repoPassword = ""
+}
+
+def almNexusDir = "https://alm.original.com.br/nexus/content"
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+    repositories {
+        maven {
+            name 'nexus'
+            def releasesRepoUrl = "$almNexusDir/repositories/releases"
+            def snapshotsRepoUrl = "$almNexusDir/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username repoUser
+                password repoPassword
+            }
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,14 @@
+pluginManagement {
+    repositories {
+        maven {
+            credentials {
+                username = "$mavenUser"
+                password = "$mavenPassword"
+            }
+            url = "https://alm.original.com.br/nexus/content/groups/microservices-maven/"
+        }
+    }
+}
+
+rootProject.name = 'sigla.projeto'
+
