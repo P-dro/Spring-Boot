@@ -1,4 +1,4 @@
-package br.com.original.sigla.projeto.domain.callback.service;
+package br.com.pedro.trampo.domain.callback.service;
 
 public class Pagination {
     private int number;

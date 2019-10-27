@@ -1,6 +1,7 @@
-package br.com.original.sigla.projeto.api.callback.model;
+package br.com.pedro.trampo.api.callback.model;
 
-import br.com.original.sigla.projeto.domain.callback.interactor.list.CallBackList;
+import br.com.pedro.trampo.domain.callback.interactor.list.CallBackList;
+import br.com.pedro.trampo.domain.callback.interactor.list.CallBackList;
 
 public class CallBackRequest {
     private Long id;

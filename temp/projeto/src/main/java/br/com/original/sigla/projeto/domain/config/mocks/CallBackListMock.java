@@ -1,15 +1,14 @@
-package br.com.original.sigla.projeto.domain.config.mocks;
+package br.com.pedro.trampo.domain.config.mocks;
 
-import br.com.original.sigla.projeto.api.callback.model.CallBackRequest;
-import br.com.original.sigla.projeto.domain.callback.interactor.list.CallBackList;
+import br.com.pedro.trampo.api.callback.model.CallBackRequest;
+import br.com.pedro.trampo.domain.callback.interactor.list.CallBackList;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-public class CallBackListMock {
+public abstract class CallBackListMock {
 
-    java.util.List list;
-
-    public java.util.List listMock() {
+    public static void listaMock(List lista) {
         CallBackList callBackList = new CallBackList();
         callBackList.setClassification("Callback de Segurança");
         callBackList.getSourceDateTime();
@@ -26,10 +25,7 @@ public class CallBackListMock {
         for (int i = 0; i < 50; i++) {
             CallBackRequest request = new CallBackRequest(callBackList);
             request.setId((long) i);
-            list.add(request);
+            lista.add(request);
         }
-
-        System.out.println(list.size());
-        return list;
     }
 }
