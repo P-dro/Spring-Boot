@@ -1,5 +1,6 @@
-package br.com.original.sigla.projeto.api.callback;
+package br.com.pedro.trampo.api.callback;
 
+<<<<<<< HEAD
 import br.com.original.sigla.projeto.api.callback.model.CallBackResponse;
 import br.com.original.sigla.projeto.api.callback.model.interactor.detail.CallBackDetailRequest;
 import br.com.original.sigla.projeto.api.callback.model.interactor.form.CallBackDetailForm;
@@ -7,6 +8,16 @@ import br.com.original.sigla.projeto.domain.callback.model.CallBackDetail;
 import br.com.original.sigla.projeto.domain.callback.service.BasicHttpErrorMessage;
 import br.com.original.sigla.projeto.domain.config.mocks.CallBackDetailMock;
 import br.com.original.sigla.projeto.domain.config.mocks.CallBackListMock;
+=======
+
+import br.com.pedro.trampo.api.callback.model.CallBackResponse;
+import br.com.pedro.trampo.api.callback.model.interactor.detail.CallBackDetailRequest;
+import br.com.pedro.trampo.api.callback.model.interactor.form.CallBackDetailForm;
+import br.com.pedro.trampo.domain.callback.model.CallBackDetail;
+import br.com.pedro.trampo.domain.callback.service.BasicHttpErrorMessage;
+import br.com.pedro.trampo.domain.config.mocks.CallBackDetailMock;
+import br.com.pedro.trampo.domain.config.mocks.CallBackListMock;
+>>>>>>> 1199a2162e8f2d0556ea73954866e1e9ec5674c5
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

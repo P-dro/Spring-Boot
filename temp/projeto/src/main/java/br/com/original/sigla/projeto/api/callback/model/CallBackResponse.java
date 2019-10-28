@@ -1,4 +1,4 @@
-package br.com.original.sigla.projeto.api.callback.model;
+package br.com.pedro.trampo.api.callback.model;
 
 import java.util.List;
 

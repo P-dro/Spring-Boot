@@ -1,4 +1,4 @@
-package br.com.original.sigla.projeto.domain.callback.model;
+package br.com.pedro.trampo.domain.callback.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
