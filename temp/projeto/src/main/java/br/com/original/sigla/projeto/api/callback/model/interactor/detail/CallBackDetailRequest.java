@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 package br.com.original.sigla.projeto.api.callback.model.interactor.detail;
 
 import br.com.original.sigla.projeto.domain.callback.model.CallBackDetail;
-=======
-package br.com.pedro.trampo.api.callback.model.interactor.detail;
-
-import br.com.pedro.trampo.domain.callback.model.CallBackDetail;
->>>>>>> 1199a2162e8f2d0556ea73954866e1e9ec5674c5
 
 public class CallBackDetailRequest {
 
